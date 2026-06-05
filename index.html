@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page Responsiva</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* 1. RESET E STILI GLOBALI (Personalizzabili) */
+        :root {
+            --primary-color: #3498db;    /* Colore principale (es. pulsanti) */
+            --secondary-color: #2c3e50;  /* Colore scuro (es. testi importanti, header) */
+            --light-bg: #f8f9fa;         /* Sfondo chiaro per i blocchi */
+            --text-color: #333333;       /* Colore del testo principale */
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--white);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        h1, h2, h3 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+
+        /* Pulsante riutilizzabile */
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        /* Container per centrare il contenuto */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 2. BLOCCO: HEADER E NAVIGAZIONE (Responsive) */
+        header {
+            background-color: var(--secondary-color);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo a {
+            color: var(--white);
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--white);
+        }
+
+        /* 3. BLOCCO: HERO (Copertina principale d'impatto) */
+        .hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.8)), url('https://picsum.photos/1920/1080') no-repeat center center/cover;
+            color: var(--white);
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            color: var(--white);
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+            color: #ecf0f1;
+        }
+
+        /* 4. BLOCCO: CARATTERISTICHE / SERVIZI (Griglia a 3 colonne) */
+        .features {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .features h2 {
+            font-size: 2.2rem;
+            margin-bottom: 50px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .card {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card i {
+            font-size: 40px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        /* 5. BLOCCO: TESTO + IMMAGINE (Layout alternato) */
+        .about-section {
+            background-color: var(--light-bg);
+            padding: 80px 0;
+        }
+
+        .split-layout {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .split-text, .split-image {
+            flex: 1;
+        }
+
+        .split-image img {
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* 6. BLOCCO: CALL TO ACTION (Invito all'azione) */
+        .cta {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .cta h2 {
+            color: var(--white);
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .cta p {
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+        }
+
+        .cta .btn {
+            background-color: var(--secondary-color);
+        }
+        .cta .btn:hover {
+            background-color: #1a252f;
+        }
+
+        /* 7. BLOCCO: FOOTER (Piè di pagina) */
+        footer {
+            background-color: #1a252f;
+            color: #94a3b8;
+            padding: 40px 0;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        footer p {
+            margin-bottom: 15px;
+        }
+
+        .social-icons a {
+            color: #94a3b8;
+            font-size: 20px;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: var(--white);
+        }
+
+
+        /* ==========================================
+           8. MEDIA QUERIES (Ottimizzazione Mobile e Tablet)
+           ========================================== */
+        
+        /* Tablet e Schermi Medi (Sotto i 992px) */
+        @media (max-width: 992px) {
+            .grid-3 {
+                grid-template-columns: repeat(2, 1fr); /* Diventa a 2 colonne su tablet */
+            }
+            .split-layout {
+                gap: 30px;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Smartphone e Schermi Piccoli (Sotto i 768px) */
+        @media (max-width: 768px) {
+            header .container {
+                flex-direction: column; /* Menu e logo sovrapposti */
+                gap: 15px;
+            }
+
+            nav ul li {
+                margin: 0 10px; /* Spazio ridotto tra i link del menu */
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .grid-3 {
+                grid-template-columns: 1fr; /* Diventa a colonna singola su cellulare */
+            }
+
+            .split-layout {
+                flex-direction: column; /* Testo e Immagine si sovrappongono */
+                text-align: center;
+            }
+
+            .split-image {
+                order: -1; /* Mette l'immagine sopra al testo sul cellulare */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="#">MioSito</a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#Home">Home</a></li>
+                    <li><a href="#Servizi">Servizi</a></li>
+                    <li><a href="#ChiSiamo">Chi Siamo</a></li>
+                    <li><a href="#Contatti">Contatti</a></li>
+                    <li><a href="#Contatti Social">Social</a></li>
+
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+<style>
+.contenitore-centrato {
+  display: flex;
+  justify-content: center; /* Centra orizzontalmente */
+<!--   align-items: center;     /* Centra verticalmente */ -->
+<!--   height: 100vh;           /* Altezza pari al 100% della viewport */ -->
+}
+</style>
+
+    <section class="hero" id="Home">
+        <div class="container">
+<div class="contenitore-centrato">
+  <img src="Logo1.png" alt="Logo" >
+</div>
+
+            <h1>Benvenuto sul Sito Web dell'Avv. Renato Bardi</h1>
+            <a href="#Contatti" class="btn">Inizia Ora</a>
+        </div>
+    </section>
+
+    <section class="features" id="Servizi">
+        <div class="container">
+            <h2>I Nostri Servizi</h2>
+            <div class="grid-3">
+                <div class="card">
+<!--                <i class="fa-solid fa-book"></i> -->
+                    <h3> • Diritto • </h3>
+		    <img src="Diritto.jpg" alt="Diritto" class="immagine-centrata">
+                </div>
+                <div class="card">
+<!--                <i class="fa-solid fa-lawyer"></i>    -->
+                    <h3> • Consulenza • </h3>
+		    <img src="Consulenza.jpg" alt="Tutela" class="immagine-centrata">
+                </div>
+                <div class="card">
+<!--                <i class="fa-solid fa-code"></i>      -->
+                    <h3> • Tutela • </h3>
+		    <img src="Tutela.jpg" alt="Tutela" class="immagine-centrata">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-section" id="ChiSiamo">
+        <div class="container">
+            <div class="split-layout">
+                <div class="split-text">
+                    <h2>Chi Siamo & La Nostra Missione</h2>
+                    <p>Questo blocco è perfetto per presentare la tua azienda, la tua storia o i tuoi prodotti. Offre un ottimo equilibrio visivo grazie alla combinazione di testo descrittivo e un'immagine d'impatto affiancata.</p>
+                    <p style="margin-top: 15px;">Puoi inserire i tuoi testi e cambiare l'immagine inserendo il percorso della tua foto nel tag HTML.</p>
+                </div>
+                <div class="split-image">
+                    <img src="https://picsum.photos/600/400" alt="Immagine di presentazione">
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!------------------------------------------------------------------------------>
+
+<section class="cta" id="Contatti">
+        <div class="container">
+            <div class="split-layout">
+                <div class="split-text">
+                        <h3>Indirizzo: Via Cecchi 23/1, 16129 Genova (GE)</h3>
+			<h3>Email: <a href="mailto:segreteria@studiolegalebardi.it">segreteria@studiolegalebardi.it</h3></a>
+	  		
+			<h3>Tel:  +39 010 591352</h3>
+			<h3>Cell: +39 366 2942347 </h3>
+
+                </div>
+<div style="display:flex;justify-content:center;width:100%;margin:30px 0;">
+  <div style="max-width:400px;width:100%;padding:20px;border:1px solid #d9d9d9;border-radius:14px;background:#f8f9fa;font-family:Arial,sans-serif;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+    
+<!--    <h2 style="margin:0 0 12px 0;text-align:center;color:#444;">Come arrivare</h2>   -->
+    
+    <h2 style="margin:0 0 10px 0;text-align:center;font-size:15px;color:#202124;">
+      Come arrivare al nostro ufficio:
+    </h2>
+    
+ <!--   <p style="margin:0 0 18px 0;text-align:center;font-size:16px;font-weight:bold;color:#111;">
+      44°23'56.0"N 8°56'43.8"E
+    </p>
+ -->   
+    <div style="display:flex;justify-content:center;">
+      <iframe
+        width="100%"
+        height="400"
+        style="border:0;border-radius:10px;max-width:640px;"
+        loading="lazy"
+        allowfullscreen
+        referrerpolicy="no-referrer-when-downgrade"
+        src="https://maps.google.com/maps?q=44.398889,8.945500&z=15&output=embed">
+      </iframe>
+    </div>
+<!--    
+    <p style="margin:16px 0 0 0;text-align:center;font-size:14px;color:#555;">
+      Coordinate in formato decimale: 44.398889, 8.945500
+    </p>
+-->
+  </div>
+</div>
+<!--       </div>
+    </section>
+-->
+            </div>
+        </div>
+            <p>Contattaci oggi stesso per ricevere una consulenza gratuita o maggiori informazioni.</p>
+            <a href="#Contatti" class="btn">Parla con un Esperto</a>
+        </div>
+
+        </div>
+    </section>
+<!------------------------------------------------------------------------------>
+
+    <footer id="Contatti Social">
+        <div class="container">
+            <p>&copy; 2026 MioSito. Tutti i diritti riservati.</p>
+            <div class="social-icons">
+                <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
